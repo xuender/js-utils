@@ -1,0 +1,33 @@
+# OS x
+.AppleDouble
+.DS_Store
+
+# build
+build/
+docs/
+
+# gedit
+*~
+
+# js
+node_modules/
+
+# python
+*.pyc
+
+# windows
+*.db
+*.bak
+
+# java
+target
+.settings
+.classpath
+.project
+
+# chrome
+*.crx
+*.zip
+
+# json
+*.jsonc
