@@ -1,6 +1,8 @@
 ###
 # utils 常用工具方法
 ###
+
+
 getId = (id = 'ID')->
   ### 获取不重复的顺序ID ###
   if window[id] == undefined
