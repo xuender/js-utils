@@ -1,19 +1,14 @@
 ###
 # utils 常用工具方法
 ###
-
-
 getId = (id = 'ID')->
   ### 获取不重复的顺序ID ###
   if window[id] == undefined
     window[id] = 1
   window[id]++
-isArray = (array) ->
-  ### 判断对象是否是数组 ###
-  Object.prototype.toString.call(array) == '[object Array]'
 findArray = (collection, attribute, value)->
   ### 数组对象查找 ###
-  if isArray(value)
+  if Array.isArray(value)
     ret = []
     for o in value
       ret.push(findArray(collection, attribute, o))

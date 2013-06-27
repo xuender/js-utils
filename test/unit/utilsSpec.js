@@ -7,18 +7,6 @@
       return expect(getId()).toEqual(3);
     });
   });
-  describe('isArray', function() {
-    return it('判断对象是否是数组', function() {
-      expect(isArray([])).toBe(true);
-      expect(isArray([1])).toBe(true);
-      expect(isArray(1)).toBe(false);
-      expect(isArray('1')).toBe(false);
-      expect(isArray()).toBe(false);
-      expect(isArray(null)).toBe(false);
-      expect(isArray(void 0)).toBe(false);
-      return expect(isArray({})).toBe(false);
-    });
-  });
   describe('findArray', function() {
     return it('对象查找', function() {
       var c;

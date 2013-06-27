@@ -3,7 +3,7 @@
 # utils 常用工具方法
 */
 
-var arrayRemove, findArray, getId, groupBy, isArray, localStorageGet, localStorageSet, sortOn, updateArray;
+var arrayRemove, findArray, getId, groupBy, localStorageGet, localStorageSet, sortOn, updateArray;
 
 getId = function(id) {
   if (id == null) {
@@ -17,17 +17,11 @@ getId = function(id) {
   return window[id]++;
 };
 
-isArray = function(array) {
-  /* 判断对象是否是数组*/
-
-  return Object.prototype.toString.call(array) === '[object Array]';
-};
-
 findArray = function(collection, attribute, value) {
   /* 数组对象查找*/
 
   var c, o, ret, _i, _j, _len, _len1;
-  if (isArray(value)) {
+  if (Array.isArray(value)) {
     ret = [];
     for (_i = 0, _len = value.length; _i < _len; _i++) {
       o = value[_i];
