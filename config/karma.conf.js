@@ -3,8 +3,7 @@ basePath = '../';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'utils.js',
-  'iconv.js',
+  'utils.min.js',
   'test/unit/**/*.js'
 ];
 
