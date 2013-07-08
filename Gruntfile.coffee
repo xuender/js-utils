@@ -26,6 +26,9 @@ module.exports = (grunt)->
           'utils.min.js': [
             'utils.js'
             'chrome.js'
+            'iconv.js'
+            'gbk.js'
+            'big5.js'
           ]
 
     uglify:
@@ -36,7 +39,7 @@ module.exports = (grunt)->
         dest: 'utils.min.js'
 
     watch:
-      files: ['utils.coffee', 'chrome.coffee']
+      files: ['*.coffee']
       tasks: ['coffeelint', 'concat']
 
     coffeelint:

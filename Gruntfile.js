@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     concat: {
       utils: {
         files: {
-          'utils.min.js': ['utils.js', 'chrome.js']
+          'utils.min.js': ['utils.js', 'chrome.js', 'iconv.js', 'gbk.js', 'big5.js']
         }
       }
     },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['utils.coffee', 'chrome.coffee'],
+      files: ['*.coffee'],
       tasks: ['coffeelint', 'concat']
     },
     coffeelint: {

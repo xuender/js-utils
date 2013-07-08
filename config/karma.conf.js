@@ -4,6 +4,7 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'utils.js',
+  'iconv.js',
   'test/unit/**/*.js'
 ];
 
