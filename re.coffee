@@ -13,3 +13,9 @@ isUrl = (str)->
     '(/[0-9a-z_!~*\'().;?:@&=+$,%#-]+)+/?)$'
   re=new RegExp(strRegex)
   re.test(str)
+
+isProtocol = (str)->
+  ### 判断是否包含协议 ###
+  strRegex = '^((https|http|ftp|rtsp|mms)?://)'
+  re=new RegExp(strRegex)
+  re.test(str)

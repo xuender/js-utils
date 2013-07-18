@@ -6,4 +6,8 @@ describe('re', ->
     expect(isUrl('baidu.c')).toEqual(false)
     expect(isUrl('你好')).toEqual(false)
   )
+  it('isProtocol', ->
+    expect(isProtocol('www.baidu.com')).toEqual(false)
+    expect(isProtocol('http://www.baidu.com')).toEqual(true)
+  )
 )
