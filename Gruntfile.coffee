@@ -26,6 +26,7 @@ module.exports = (grunt)->
           'utils.min.js': [
             'utils.js'
             'chrome.js'
+            're.js'
             'iconv.js'
             'gbk.js'
             'big5.js'
