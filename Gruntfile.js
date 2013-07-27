@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     concat: {
       utils: {
         files: {
-          'utils.min.js': ['utils.js', 'chrome.js', 're.js', 'iconv.js', 'gbk.js', 'big5.js']
+          'utils.min.js': ['utils.js', 'chrome.js', 're.js', 'sha1.js', 'iconv.js', 'gbk.js', 'big5.js']
         }
       }
     },
