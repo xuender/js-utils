@@ -1,5 +1,6 @@
 describe('re', ->
   it('isUrl', ->
+    expect(isUrl('baidu')).toEqual(false)
     expect(isUrl('www.baidu.com')).toEqual(true)
     expect(isUrl('baidu.com')).toEqual(true)
     expect(isUrl('baidu.cn')).toEqual(true)
