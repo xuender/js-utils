@@ -68,6 +68,9 @@ module.exports = (grunt)->
         colors: true,
       travis:
         singleRun: true
+        browsers: ['PhantomJS']
+        reporters: ['progress']
+        autoWatch: false
   )
   grunt.registerTask('docs', '文档', ['shell:docs'])
   grunt.registerTask('test', '测试', ['karma:dev'])

@@ -68,7 +68,10 @@ module.exports = function(grunt) {
         colors: true
       },
       travis: {
-        singleRun: true
+        singleRun: true,
+        browsers: ['PhantomJS'],
+        reporters: ['progress'],
+        autoWatch: false
       }
     }
   });
