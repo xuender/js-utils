@@ -61,6 +61,8 @@ describe 'array', ->
     ]
     it 't分组', ->
       g = JU.groupBy(c, 't')
+      JU.sortOn(g[0].items, 'a')
+      JU.sortOn(g[1].items, 'a')
       expect(g[0].label).toEqual(1)
       expect(g[1].label).toEqual(2)
       expect(g[0].items[0].a).toEqual(1)
@@ -69,6 +71,8 @@ describe 'array', ->
       expect(g[1].items[1].a).toEqual(4)
     it 'g分组', ->
       g = JU.groupBy(c, 'g')
+      JU.sortOn(g[0].items, 'a')
+      JU.sortOn(g[1].items, 'a')
       expect(g[0].label).toEqual(3)
       expect(g[1].label).toEqual(4)
       expect(g[0].items[0].a).toEqual(1)

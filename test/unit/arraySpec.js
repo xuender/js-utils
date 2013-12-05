@@ -104,6 +104,8 @@ describe('array', function() {
     it('t分组', function() {
       var g;
       g = JU.groupBy(c, 't');
+      JU.sortOn(g[0].items, 'a');
+      JU.sortOn(g[1].items, 'a');
       expect(g[0].label).toEqual(1);
       expect(g[1].label).toEqual(2);
       expect(g[0].items[0].a).toEqual(1);
@@ -114,6 +116,8 @@ describe('array', function() {
     return it('g分组', function() {
       var g;
       g = JU.groupBy(c, 'g');
+      JU.sortOn(g[0].items, 'a');
+      JU.sortOn(g[1].items, 'a');
       expect(g[0].label).toEqual(3);
       expect(g[1].label).toEqual(4);
       expect(g[0].items[0].a).toEqual(1);
