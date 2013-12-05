@@ -12,7 +12,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
-      dist: 'dist'
+      build: ['utils.min.js']
     },
     bump: {
       options: {
@@ -21,56 +21,41 @@ module.exports = function(grunt) {
       files: ['package.json', 'bower.json']
     },
     concat: {
-      options: {
-        banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
-      },
       utils: {
-        src: ['src/array.js', 'src/chrome.js', 'src/re.js', 'src/sha1.js', 'src/iconv.js', 'src/gbk.js', 'src/big5.js'],
-        dest: 'dist/js-utils.js'
+        files: {
+          'utils.min.js': ['utils.js', 'chrome.js', 're.js', 'sha1.js', 'iconv.js', 'gbk.js', 'big5.js']
+        }
       }
     },
     uglify: {
       options: {
-        banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       utils: {
-        src: '<%= concat.utils.src %>',
-        dest: 'dist/js-utils.min.js'
-      },
-      array: {
-        src: 'src/array.js',
-        dest: 'dist/array.min.js'
+        src: 'utils.min.js',
+        dest: 'utils.min.js'
       }
     },
     watch: {
-      coffee: {
-        files: ['src/*.coffee'],
-        tasks: ['coffeelint']
-      },
-      js: {
-        files: ['src/*.js'],
-        tasks: ['concat']
-      }
+      files: ['*.coffee'],
+      tasks: ['coffeelint', 'concat']
     },
     coffeelint: {
-      array: ['src/array.coffee']
+      app: ['utils.coffee']
     },
     shell: {
       docs: {
-        command: 'coffeedoc src/*.coffee'
+        command: 'coffeedoc utils.coffee'
       }
     },
     karma: {
-      options: {
-        configFile: 'karma.conf.js'
-      },
-      dev: {
-        colors: true
+      unit: {
+        configFile: 'config/karma.conf.js'
       }
     }
   });
   grunt.registerTask('docs', '文档', ['shell:docs']);
   grunt.registerTask('test', '测试', ['karma']);
-  grunt.registerTask('package', '打包', ['clean', 'bump', 'uglify']);
+  grunt.registerTask('package', '打包', ['clean', 'bump', 'concat', 'uglify']);
   return grunt.registerTask('default', '默认(打包)', ['package']);
 };

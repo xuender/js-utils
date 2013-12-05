@@ -13,52 +13,65 @@ module.exports = (grunt)->
     #读取配置信息
     pkg: grunt.file.readJSON('package.json')
 
-    clean: {build: ['utils.min.js']}
+    clean:
+      dist:
+        'dist'
 
     bump:
       options:
         part: 'patch'
-      files: [ 'package.json', 'bower.json' ]
+      files: ['package.json', 'bower.json']
 
     concat:
+      options:
+        banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
       utils:
-        files:
-          'utils.min.js': [
-            'utils.js'
-            'chrome.js'
-            're.js'
-            'sha1.js'
-            'iconv.js'
-            'gbk.js'
-            'big5.js'
-          ]
+        src: [
+          'src/array.js'
+          'src/chrome.js'
+          'src/re.js'
+          'src/sha1.js'
+          'src/iconv.js'
+          'src/gbk.js'
+          'src/big5.js'
+        ]
+        dest: 'dist/js-utils.js'
 
     uglify:
       options:
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
       utils:
-        src: 'utils.min.js'
-        dest: 'utils.min.js'
+        src: '<%= concat.utils.src %>'
+        dest: 'dist/js-utils.min.js'
+      array:
+        src: 'src/array.js'
+        dest: 'dist/array.min.js'
 
     watch:
-      files: ['*.coffee']
-      tasks: ['coffeelint', 'concat']
+      coffee:
+        files: ['src/*.coffee']
+        tasks: ['coffeelint']
+      js:
+        files: ['src/*.js']
+        tasks: ['concat']
 
     coffeelint:
-      app: ['utils.coffee']
+      array: ['src/array.coffee']
 
     shell:
       docs:
-        command: 'coffeedoc utils.coffee'
+        command: 'coffeedoc src/*.coffee'
 
     karma:
-      unit:
-        configFile: 'config/karma.conf.js'
+      options:
+        configFile: 'karma.conf.js'
+      dev:
+        colors: true,
   )
   grunt.registerTask('docs', '文档', ['shell:docs'])
   grunt.registerTask('test', '测试', ['karma'])
   grunt.registerTask(
     'package', '打包', [
-      'clean', 'bump', 'concat', 'uglify'
+      'clean', 'bump', 'uglify'
     ])
   grunt.registerTask('default', '默认(打包)', ['package'])

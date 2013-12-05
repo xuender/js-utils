@@ -1,30 +1,37 @@
 ###
 # utils 常用工具方法
 ###
-getId = (id = 'ID')->
+if not this.JU
+  this.JU = {}
+
+JU.getId = (id = 'ID')->
   ### 获取不重复的顺序ID ###
   if window[id] == undefined
     window[id] = 1
   window[id]++
-findArray = (collection, attribute, value)->
+
+JU.findArray = (collection, attribute, value)->
   ### 数组对象查找 ###
   if Array.isArray(value)
     ret = []
     for o in value
-      ret.push(findArray(collection, attribute, o))
+      ret.push(JU.findArray(collection, attribute, o))
     return ret
   for c in collection
     if c[attribute] == value
       return c
   null
-updateArray = (collection, o, n)->
+
+JU.updateArray = (collection, o, n)->
   ### 数组替换 ###
   collection[index] = n for index, value of collection when value == o
   collection
-arrayRemove = (collection, obj)->
+
+JU.arrayRemove = (collection, obj)->
   ### 删除对象 ###
   collection.splice(index, 1) for index, value of collection when value == obj
-sortOn = (collection, name)->
+
+JU.sortOn = (collection, name)->
   ### 根据数组中对象某属性进行排序 ###
   if name[0] == '-'
     desc = true
@@ -36,10 +43,11 @@ sortOn = (collection, name)->
   )
   if desc
     return collection.reverse()
-groupBy = (items, attribute)->
+
+JU.groupBy = (items, attribute)->
   ### 获取对象分组 ###
   ret = []
-  sortOn(items, attribute)
+  JU.sortOn(items, attribute)
   groupValue = '_INVALID_GROUP_VALUE_'
   for i in items
     if i[ attribute ] != groupValue
@@ -50,11 +58,13 @@ groupBy = (items, attribute)->
       ret.push(group)
     group.items.push(i)
   ret
-localStorageGet = (key, defaultValue = false)->
+
+JU.localStorageGet = (key, defaultValue = false)->
   ### 读取本地数据 ###
   value = localStorage.getItem(key)
   if value then return JSON.parse(value)
   defaultValue
-localStorageSet = (key, value)->
+
+JU.localStorageSet = (key, value)->
   ### 设置本地数据 ###
   localStorage.setItem(key, JSON.stringify(value))

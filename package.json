@@ -1,6 +1,6 @@
 {
     "name": "js-utils",
-    "version": "1.0.11",
+    "version": "1.1.12",
     "author": {
         "name": "ender",
         "url": "http://xuender.me/"
@@ -10,14 +10,14 @@
         "url": "git://github.com/xuender/js-utils.git"
     },
     "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-uglify": "~0.2.2",
-        "grunt-contrib-clean": "~0.4.1",
-        "grunt-contrib-concat": "~0.1.1",
-        "grunt-contrib-watch": "~0.4.4",
-        "grunt-coffeelint": "~0.0.6",
-        "grunt-karma": "~0.4.4",
-        "grunt-shell": "~0.2.2",
-        "grunt-bumpx": "~0.1.5"
+        "grunt": "~0.4.2",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-bumpx": "~0.1.5",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-uglify": "~0.2.7",
+        "grunt-contrib-watch": "~0.5.3",
+        "grunt-coffeelint": "~0.0.7",
+        "grunt-karma": "~0.7.1",
+        "grunt-shell": "~0.6.1"
     }
 }
