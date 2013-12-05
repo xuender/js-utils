@@ -1,4 +1,3 @@
-'use strict'
 module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-concat')
@@ -10,7 +9,6 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-bumpx')
 
   grunt.initConfig(
-    #读取配置信息
     pkg: grunt.file.readJSON('package.json')
 
     clean:
@@ -24,12 +22,31 @@ module.exports = (grunt)->
     concat:
       options:
         banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
+      array:
+        src:'src/array.js'
+        dest: 'dist/array.js'
+      re:
+        src:'src/re.js'
+        dest: 'dist/re.js'
+      chrome:
+        src:[
+          'src/html5.js'
+          'src/chrome.js'
+        ]
+        dest: 'dist/chrome.js'
+      iconv:
+        src: [
+          'src/gbk.js'
+          'src/big5.js'
+          'src/iconv.js'
+        ]
+        dest: 'dist/iconv.js'
       utils:
         src: [
+          'lib/sha1.js'
           'src/array.js'
           'src/chrome.js'
           'src/re.js'
-          'src/sha1.js'
           'src/iconv.js'
           'src/gbk.js'
           'src/big5.js'
@@ -39,23 +56,29 @@ module.exports = (grunt)->
     uglify:
       options:
         banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
-      utils:
-        src: '<%= concat.utils.src %>'
-        dest: 'dist/js-utils.min.js'
+      iconv:
+        src: '<%= concat.iconv.src %>'
+        dest: 'dist/iconv.min.js'
+      chrome:
+        src: '<%= concat.chrome.src %>'
+        dest: 'dist/chrome.min.js'
+      re:
+        src: 'src/re.js'
+        dest: 'dist/re.min.js'
       array:
         src: 'src/array.js'
         dest: 'dist/array.min.js'
+      utils:
+        src: '<%= concat.utils.src %>'
+        dest: 'dist/js-utils.min.js'
 
     watch:
-      coffee:
-        files: ['src/*.coffee']
-        tasks: ['coffeelint']
       js:
         files: ['src/*.js']
         tasks: ['concat']
 
     coffeelint:
-      array: ['src/array.coffee']
+      array: ['src/*.coffee']
 
     shell:
       docs:
@@ -68,14 +91,13 @@ module.exports = (grunt)->
         colors: true,
       travis:
         singleRun: true
-        browsers: ['PhantomJS']
         autoWatch: false
   )
-  grunt.registerTask('docs', '文档', ['shell:docs'])
-  grunt.registerTask('test', '测试', ['karma:dev'])
-  grunt.registerTask('travis', 'travis', ['clean', 'concat', 'karma:travis'])
+  grunt.registerTask('docs', 'create docs', ['shell:docs'])
+  grunt.registerTask('test', 'watch run test', ['karma:dev'])
+  grunt.registerTask('travis', 'travis test', ['clean', 'concat', 'karma:travis'])
   grunt.registerTask(
-    'package', '打包', [
-      'clean', 'bump', 'uglify'
+    'dist', 'default', [
+      'coffeelint', 'clean', 'bump', 'uglify'
     ])
-  grunt.registerTask('default', '默认(打包)', ['package'])
+  grunt.registerTask('default', 'dist', ['dist'])

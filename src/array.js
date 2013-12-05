@@ -40,20 +40,20 @@ JU.findArray = function(collection, attribute, value) {
   return null;
 };
 
-JU.updateArray = function(collection, o, n) {
+JU.updateArray = function(collection, oldObj, newObj) {
   /* 数组替换*/
 
   var index, value;
   for (index in collection) {
     value = collection[index];
-    if (value === o) {
-      collection[index] = n;
+    if (value === oldObj) {
+      collection[index] = newObj;
     }
   }
   return collection;
 };
 
-JU.arrayRemove = function(collection, obj) {
+JU.removeArray = function(collection, obj) {
   /* 删除对象*/
 
   var index, value, _results;
