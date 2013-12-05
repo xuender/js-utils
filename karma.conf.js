@@ -15,7 +15,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/array.js',
-      'test/**/arraySpec.js'
+      'src/html5.js',
+      'test/**/arraySpec.js',
+      'test/**/html5Spec.js'
     ],
 
 

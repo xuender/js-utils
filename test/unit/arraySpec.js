@@ -80,7 +80,7 @@ describe('array', function() {
       return expect(c[1].a).toEqual(2);
     });
   });
-  describe('groupBy', function() {
+  return describe('groupBy', function() {
     var c;
     c = [
       {
@@ -120,27 +120,6 @@ describe('array', function() {
       expect(g[0].items[1].a).toEqual(3);
       expect(g[1].items[0].a).toEqual(2);
       return expect(g[1].items[1].a).toEqual(4);
-    });
-  });
-  describe('localStorageGet', function() {
-    return it('取值', function() {
-      localStorage['a'] = '2';
-      expect(JU.localStorageGet('a')).toEqual(2);
-      return expect(JU.localStorageGet('b', '3')).toEqual('3');
-    });
-  });
-  describe('localStorageSet', function() {
-    return it('设值', function() {
-      JU.localStorageSet('c', '5');
-      return expect(localStorage['c']).toEqual('"5"');
-    });
-  });
-  return describe('boolen', function() {
-    return it('设值', function() {
-      JU.localStorageSet('c', true);
-      expect(JU.localStorageGet('c')).toEqual(true);
-      JU.localStorageSet('c', false);
-      return expect(JU.localStorageGet('c')).toEqual(false);
     });
   });
 });

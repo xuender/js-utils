@@ -7,18 +7,9 @@ describe 'array', ->
   describe 'findArray', ->
     it '对象查找', ->
       c = [
-        {
-          a: 1
-          b: 10
-        }
-        {
-          a: 2
-          b: 20
-        }
-        {
-          a: 3
-          b: 30
-        }
+        {a: 1, b: 10}
+        {a: 2, b: 20}
+        {a: 3, b: 30}
       ]
       expect(JU.findArray(c, 'a', 2).b).toEqual(20)
       expect(JU.findArray(c, 'a', [2, 3]).length).toEqual(2)
@@ -39,22 +30,10 @@ describe 'array', ->
 
   describe 'sortOn', ->
     c = [
-      {
-        a: 1
-        b: 4
-      }
-      {
-        a: 2
-        b: 3
-      }
-      {
-        a: 3
-        b: 2
-      }
-      {
-        a: 4
-        b: 1
-      }
+      {a: 1, b: 4}
+      {a: 2, b: 3}
+      {a: 3, b: 2}
+      {a: 4, b: 1}
     ]
     it 'a顺序', ->
       JU.sortOn(c, 'a')
@@ -75,26 +54,10 @@ describe 'array', ->
 
   describe 'groupBy', ->
     c = [
-      {
-        a: 1
-        t: 1
-        g: 3
-      }
-      {
-        a: 2
-        t: 1
-        g: 4
-      }
-      {
-        a: 3
-        t: 2
-        g: 3
-      }
-      {
-        a: 4
-        t: 2
-        g: 4
-      }
+      {a: 1, t: 1, g: 3}
+      {a: 2, t: 1, g: 4}
+      {a: 3, t: 2, g: 3}
+      {a: 4, t: 2, g: 4}
     ]
     it 't分组', ->
       g = JU.groupBy(c, 't')
@@ -112,21 +75,3 @@ describe 'array', ->
       expect(g[0].items[1].a).toEqual(3)
       expect(g[1].items[0].a).toEqual(2)
       expect(g[1].items[1].a).toEqual(4)
-
-  describe 'localStorageGet', ->
-    it '取值', ->
-      localStorage['a'] = '2'
-      expect(JU.localStorageGet('a')).toEqual(2)
-      expect(JU.localStorageGet('b', '3')).toEqual('3')
-
-  describe 'localStorageSet', ->
-    it '设值', ->
-      JU.localStorageSet('c', '5')
-      expect(localStorage['c']).toEqual('"5"')
-
-  describe 'boolen', ->
-    it '设值', ->
-      JU.localStorageSet('c', true)
-      expect(JU.localStorageGet('c')).toEqual(true)
-      JU.localStorageSet('c', false)
-      expect(JU.localStorageGet('c')).toEqual(false)

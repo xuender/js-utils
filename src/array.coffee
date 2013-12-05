@@ -1,5 +1,5 @@
 ###
-# utils 常用工具方法
+# array utls
 ###
 if not this.JU
   this.JU = {}
@@ -58,13 +58,3 @@ JU.groupBy = (items, attribute)->
       ret.push(group)
     group.items.push(i)
   ret
-
-JU.localStorageGet = (key, defaultValue = false)->
-  ### 读取本地数据 ###
-  value = localStorage.getItem(key)
-  if value then return JSON.parse(value)
-  defaultValue
-
-JU.localStorageSet = (key, value)->
-  ### 设置本地数据 ###
-  localStorage.setItem(key, JSON.stringify(value))
