@@ -19,5 +19,8 @@
         "grunt-coffeelint": "~0.0.7",
         "grunt-karma": "~0.7.1",
         "grunt-shell": "~0.6.1"
+    },
+    "scripts": {
+      "test": "grunt travis --verbose"
     }
 }

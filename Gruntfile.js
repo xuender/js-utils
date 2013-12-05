@@ -66,11 +66,15 @@ module.exports = function(grunt) {
       },
       dev: {
         colors: true
+      },
+      travis: {
+        singleRun: true
       }
     }
   });
   grunt.registerTask('docs', '文档', ['shell:docs']);
-  grunt.registerTask('test', '测试', ['karma']);
+  grunt.registerTask('test', '测试', ['karma:dev']);
+  grunt.registerTask('travis', 'travis', ['clean', 'concat', 'karma:travis']);
   grunt.registerTask('package', '打包', ['clean', 'bump', 'uglify']);
   return grunt.registerTask('default', '默认(打包)', ['package']);
 };
