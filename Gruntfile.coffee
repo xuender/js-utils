@@ -69,7 +69,6 @@ module.exports = (grunt)->
       travis:
         singleRun: true
         browsers: ['PhantomJS']
-        reporters: ['progress']
         autoWatch: false
   )
   grunt.registerTask('docs', '文档', ['shell:docs'])

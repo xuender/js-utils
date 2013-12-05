@@ -1,6 +1,6 @@
 {
     "name": "js-utils",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "author": {
         "name": "ender",
         "url": "http://xuender.me/"
@@ -21,6 +21,6 @@
         "grunt-shell": "~0.6.1"
     },
     "scripts": {
-      "test": "grunt travis --verbose"
+        "test": "grunt travis --verbose"
     }
 }

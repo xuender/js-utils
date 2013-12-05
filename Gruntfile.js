@@ -70,7 +70,6 @@ module.exports = function(grunt) {
       travis: {
         singleRun: true,
         browsers: ['PhantomJS'],
-        reporters: ['progress'],
         autoWatch: false
       }
     }
