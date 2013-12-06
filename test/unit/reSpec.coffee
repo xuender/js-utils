@@ -10,8 +10,8 @@ describe('re', ->
     expect(JU.isUrl('你好')).toEqual(false)
     expect(JU.isUrl('booking')).toEqual(false)
   )
-  it('isProtocol', ->
-    expect(JU.isProtocol('www.baidu.com')).toEqual(false)
-    expect(JU.isProtocol('http://www.baidu.com')).toEqual(true)
+  it('hasProtocol', ->
+    expect(JU.hasProtocol('www.baidu.com')).toEqual(false)
+    expect(JU.hasProtocol('http://www.baidu.com')).toEqual(true)
   )
 )

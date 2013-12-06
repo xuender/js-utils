@@ -1,5 +1,5 @@
 ###
-# UTF8 -> GBK
+UTF8 -> GBK
 ###
 if not this.JU
   this.JU = {}

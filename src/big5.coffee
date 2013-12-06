@@ -1,5 +1,5 @@
 ###
-# UTF8 -> BIG5
+UTF8 -> BIG5
 ###
 if not this.JU
   this.JU = {}

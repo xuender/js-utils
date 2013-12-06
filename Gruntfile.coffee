@@ -3,6 +3,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-karma')
   grunt.loadNpmTasks('grunt-coffeelint')
   grunt.loadNpmTasks('grunt-shell')
@@ -19,63 +20,66 @@ module.exports = (grunt)->
         part: 'patch'
       files: ['package.json', 'bower.json']
 
-    concat:
+    coffee:
       options:
         banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
+        bare: true
       array:
-        src:'src/array.js'
-        dest: 'dist/array.js'
+        files:
+          'dist/array.js': 'src/array.coffee'
       re:
-        src:'src/re.js'
-        dest: 'dist/re.js'
+        files:
+          'dist/re.js': 'src/re.coffee'
       chrome:
-        src:[
-          'src/html5.js'
-          'src/chrome.js'
-        ]
-        dest: 'dist/chrome.js'
+        files:
+          'dist/chrome.js': [
+            'src/html5.coffee'
+            'src/chrome.coffee'
+          ]
       iconv:
-        src: [
-          'src/gbk.js'
-          'src/big5.js'
-          'src/iconv.js'
-        ]
-        dest: 'dist/iconv.js'
+        files:
+          'dist/iconv.js': [
+            'src/gbk.coffee'
+            'src/big5.coffee'
+            'src/iconv.coffee'
+          ]
       utils:
-        src: [
-          'lib/sha1.js'
-          'src/array.js'
-          'src/chrome.js'
-          'src/re.js'
-          'src/iconv.js'
-          'src/gbk.js'
-          'src/big5.js'
-        ]
-        dest: 'dist/js-utils.js'
+        files:
+          'dist/js-utils.js': [
+            'src/array.coffee'
+            'src/chrome.coffee'
+            'src/re.coffee'
+            'src/iconv.coffee'
+            'src/gbk.coffee'
+            'src/big5.coffee'
+          ]
 
     uglify:
       options:
         banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
-      iconv:
-        src: '<%= concat.iconv.src %>'
-        dest: 'dist/iconv.min.js'
-      chrome:
-        src: '<%= concat.chrome.src %>'
-        dest: 'dist/chrome.min.js'
-      re:
-        src: 'src/re.js'
-        dest: 'dist/re.min.js'
       array:
-        src: 'src/array.js'
-        dest: 'dist/array.min.js'
+        files:
+          'dist/array.min.js': 'dist/array.js'
+      re:
+        files:
+          'dist/re.min.js': 'dist/re.js'
+      chrome:
+        files:
+          'dist/chrome.min.js': 'dist/chrome.js'
+      iconv:
+        files:
+          'dist/iconv.min.js': 'dist/iconv.js'
       utils:
-        src: '<%= concat.utils.src %>'
-        dest: 'dist/js-utils.min.js'
+        files:
+          'dist/js-utils.min.js': [
+            'lib/sha1.js'
+            'dist/js-utils.js'
+          ]
 
     watch:
-      js:
-        files: ['src/*.js']
-        tasks: ['concat']
+      coffee:
+        files: ['src/*.coffee']
+        tasks: ['coffeelint']
 
     coffeelint:
       array: ['src/*.coffee']
@@ -97,7 +101,11 @@ module.exports = (grunt)->
   grunt.registerTask('test', 'watch run test', ['karma:dev'])
   grunt.registerTask('travis', 'travis test', ['clean', 'concat', 'karma:travis'])
   grunt.registerTask(
-    'dist', 'default', [
-      'coffeelint', 'clean', 'bump', 'uglify'
+    'dist', '生成', [
+      'coffeelint'
+      'clean'
+      'bump'
+      'coffee'
+      'uglify'
     ])
-  grunt.registerTask('default', 'dist', ['dist'])
+  grunt.registerTask('default', '默认', ['dist'])

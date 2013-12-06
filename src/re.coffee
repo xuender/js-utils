@@ -1,5 +1,5 @@
 ###
-# RE utls
+Regex utls
 ###
 if not this.JU
   this.JU = {}
@@ -9,7 +9,7 @@ JU.isUrl = (str)->
   re = /^((ht|f)tps?\:\/\/)?([a-z0-9]+\.)?[a-z0-9][a-z0-9-]*\.[a-z]{2,6}$/i
   re.test(str)
 
-JU.isProtocol = (str)->
+JU.hasProtocol = (str)->
   ### 判断是否包含协议 ###
   strRegex = '^((https|http|ftp|rtsp|mms)?://)'
   re = new RegExp(strRegex)

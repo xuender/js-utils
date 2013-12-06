@@ -1,3 +1,6 @@
+###
+chrome utils
+###
 syncFetch = (file, fn)->
   ### 获取资源文件 ###
   xhr = new XMLHttpRequest()

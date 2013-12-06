@@ -1,5 +1,5 @@
 ###
-# Encoding Utils
+Encoding Utils
 ###
 if not this.JU
   this.JU = {}
