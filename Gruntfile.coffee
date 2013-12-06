@@ -102,7 +102,6 @@ module.exports = (grunt)->
   grunt.registerTask('travis', 'travis test', ['clean', 'concat', 'karma:travis'])
   grunt.registerTask(
     'dist', '生成', [
-      'coffeelint'
       'clean'
       'bump'
       'coffee'
