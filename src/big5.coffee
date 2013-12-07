@@ -1,4 +1,11 @@
-iconv.big5 =
+###
+UTF8 -> BIG5
+###
+if not this.JU
+  this.JU = {}
+
+JU._big5 =
+  ### BIG5 code ###
   19991:33088
   20002:33089
   20012:33090

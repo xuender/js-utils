@@ -1,5 +1,5 @@
 ###
-# HTML5 utils
+HTML5 utils
 ###
 if not this.JU
   this.JU = {}

@@ -1,5 +1,5 @@
 ###
-# array utls
+array utls
 ###
 if not this.JU
   this.JU = {}
@@ -22,12 +22,12 @@ JU.findArray = (collection, attribute, value)->
       return c
   null
 
-JU.updateArray = (collection, o, n)->
+JU.updateArray = (collection, oldObj, newObj)->
   ### 数组替换 ###
-  collection[index] = n for index, value of collection when value == o
+  collection[index] = newObj for index, value of collection when value == oldObj
   collection
 
-JU.arrayRemove = (collection, obj)->
+JU.removeArray = (collection, obj)->
   ### 删除对象 ###
   collection.splice(index, 1) for index, value of collection when value == obj
 

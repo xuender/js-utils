@@ -1,4 +1,11 @@
-iconv.gbk =
+###
+UTF8 -> GBK
+###
+if not this.JU
+  this.JU = {}
+
+JU._gbk =
+  ### GBK code ###
   19970:33088
   19972:33089
   19973:33090
