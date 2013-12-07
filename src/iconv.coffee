@@ -1,28 +1,44 @@
 ###
-Encoding Utils
+iconv Utils
 ###
 if not this.JU
   this.JU = {}
 
-JU.toBig5 = (str)->
-  ### UTF8 -> BIG5 ###
+JU.str2hex = (str, split='', prefix='')->
+  ### string to Hex ###
   ret = []
   for i in str
-    if i == ' '
-      ret.push('+')
-      continue
+    ret.push(prefix + i.charCodeAt(0).toString(16))
+  ret.join(split)
+
+JU.toGbk = (str)->
+  ### UTF-8 -> GBK ###
+  ret = []
+  for i in str
+    code = i.charCodeAt(0)
+    if code >> 7
+      gbkcode = JU._gbk[code]
+      ret.push(String.fromCharCode(gbkcode >> 8)) #high byte
+      ret.push(String.fromCharCode(gbkcode & 0xFF)) #low byte
+    else
+      ret.push(code)
+  ret.join('')
+
+JU.toBig5 = (str)->
+  ### UTF-8 -> BIG5 ###
+  ret = []
+  for i in str
     code = i.charCodeAt(0)
     if code >> 7
       big5code = JU._big5[code]
-      ret.push('%')
-      ret.push((big5code >> 8).toString(16).toUpperCase()) #high byte
+      ret.push(String.fromCharCode(big5code >> 8)) #high byte
       ret.push(String.fromCharCode(big5code & 0xFF))
     else
-      ret.push(String.fromCharCode(code))
+      ret.push(code)
   ret.join('')
 
-JU.toGbk = (str)->
-  ### UTF8 -> GBK ###
+JU.gbkEncodeURI = (str)->
+  ### GBK encode to URI ###
   ret = []
   for i in str
     if i == ' '
@@ -39,8 +55,27 @@ JU.toGbk = (str)->
       ret.push(String.fromCharCode(code))
   ret.join('')
 
-JU.toEncoding = (str, encoding = 'GBK')->
-  ### UTF8 -> GBK or BIG5 ###
-  if encoding == 'big5'
-    return JU.toBig5(str)
-  JU.toGbk(str)
+JU.big5EncodeURI = (str)->
+  ### BIG5 encode to URI ###
+  ret = []
+  for i in str
+    if i == ' '
+      ret.push('+')
+      continue
+    code = i.charCodeAt(0)
+    if code >> 7
+      big5code = JU._big5[code]
+      ret.push('%')
+      ret.push((big5code >> 8).toString(16).toUpperCase()) #high byte
+      ret.push(String.fromCharCode(big5code & 0xFF))
+    else
+      ret.push(String.fromCharCode(code))
+  ret.join('')
+
+JU.encodeURI= (str, encoding = '')->
+  ### GBK or BIG5 encode URI ###
+  if encoding[..2].toUpperCase() == 'GBK'
+    return JU.gbkEncodeURI(str)
+  if encoding[..2].toUpperCase() == 'BIG'
+    return JU.big5EncodeURI(str)
+  encodeURI(str)

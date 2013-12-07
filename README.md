@@ -1,4 +1,4 @@
-js-utils
+js-utils [![Build Status](https://travis-ci.org/xuender/js-utils.png?branch=master)](https://travis-ci.org/xuender/js-utils)
 ========
 
 JavaScript Utils
@@ -14,7 +14,3 @@ chrome utils
 
 ## re ##
 re utils
-
-## Links ##
-
-* [![Build Status](https://travis-ci.org/xuender/js-utils.png)](https://travis-ci.org/xuender/js-utils)

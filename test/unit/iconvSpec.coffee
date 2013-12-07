@@ -1,9 +1,17 @@
 describe('iconv', ->
-  it('toEncoding', ->
-    expect(JU.toEncoding('中国', 'gbk')).toEqual('%D6%D0%B9%FA')
-    expect(JU.toEncoding('中国1', 'gbk')).toEqual('%D6%D0%B9%FA1')
-    expect(JU.toEncoding('中国a', 'gbk')).toEqual('%D6%D0%B9%FAa')
-    expect(JU.toEncoding('中国 a', 'gbk')).toEqual('%D6%D0%B9%FA+a')
-    expect(JU.toEncoding('你好', 'big5')).toEqual('%A7A%A6n')
-  )
+  it 'str2hex', ->
+    expect(JU.str2hex('ab')).toEqual('6162')
+    expect(JU.str2hex('阿弥陀佛', '', '\\u')).toEqual('\\u963f\\u5f25\\u9640\\u4f5b')
+
+  it 'encodeURI', ->
+    expect(JU.encodeURI('阿弥陀佛', 'gbk')).toEqual('%B0%A2%C3%D6%CD%D3%B7%F0')
+    expect(JU.encodeURI('阿弥陀佛1', 'gbk')).toEqual('%B0%A2%C3%D6%CD%D3%B7%F01')
+    expect(JU.encodeURI('阿弥陀佛 a', 'gbk')).toEqual('%B0%A2%C3%D6%CD%D3%B7%F0+a')
+    expect(JU.encodeURI('阿弥陀佛', 'big5')).toEqual('%AAü%93ù%AAû%A6ò')
+
+  it 'toGbk', ->
+    expect(JU.str2hex(JU.toGbk('郎'))).toEqual('fd9c')
+
+  it 'toBig5', ->
+    expect(JU.str2hex(JU.toBig5('嗀嗀'))).toEqual('dcd1ddfc')
 )
