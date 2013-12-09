@@ -14,10 +14,11 @@ JU.str2hex = (str, split='', prefix='')->
 JU.toGbk = (str)->
   ### UTF-8 -> GBK ###
   ret = []
+  gbk = JU._getGbk()
   for i in str
     code = i.charCodeAt(0)
     if code >> 7
-      gbkcode = JU._gbk[code]
+      gbkcode = gbk[code]
       ret.push(String.fromCharCode(gbkcode >> 8)) #high byte
       ret.push(String.fromCharCode(gbkcode & 0xFF)) #low byte
     else
@@ -27,10 +28,11 @@ JU.toGbk = (str)->
 JU.toBig5 = (str)->
   ### UTF-8 -> BIG5 ###
   ret = []
+  big5 = JU._getBig5()
   for i in str
     code = i.charCodeAt(0)
     if code >> 7
-      big5code = JU._big5[code]
+      big5code = big5[code]
       ret.push(String.fromCharCode(big5code >> 8)) #high byte
       ret.push(String.fromCharCode(big5code & 0xFF))
     else
@@ -40,13 +42,14 @@ JU.toBig5 = (str)->
 JU.gbkEncodeURI = (str)->
   ### GBK encode to URI ###
   ret = []
+  gbk = JU._getGbk()
   for i in str
     if i == ' '
       ret.push('+')
       continue
     code = i.charCodeAt(0)
     if code >> 7
-      gbkcode = JU._gbk[code]
+      gbkcode = gbk[code]
       ret.push('%')
       ret.push((gbkcode >> 8).toString(16).toUpperCase()) #high byte
       ret.push('%')
@@ -58,13 +61,14 @@ JU.gbkEncodeURI = (str)->
 JU.big5EncodeURI = (str)->
   ### BIG5 encode to URI ###
   ret = []
+  big5 = JU._getBig5()
   for i in str
     if i == ' '
       ret.push('+')
       continue
     code = i.charCodeAt(0)
     if code >> 7
-      big5code = JU._big5[code]
+      big5code = big5[code]
       ret.push('%')
       ret.push((big5code >> 8).toString(16).toUpperCase()) #high byte
       ret.push(String.fromCharCode(big5code & 0xFF))
