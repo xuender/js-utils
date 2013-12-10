@@ -13,7 +13,7 @@ module.exports = (grunt)->
     pkg: grunt.file.readJSON('package.json')
 
     clean:
-      dist: ['dist', 'docs']
+      dist: ['dist', 'docs', 'js']
 
     bump:
       options:
@@ -59,19 +59,19 @@ module.exports = (grunt)->
         banner: '// <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n'
       array:
         files:
-          'dist/array.min.js': 'dist/array.js'
+          'js/array.min.js': 'dist/array.js'
       re:
         files:
-          'dist/re.min.js': 'dist/re.js'
+          'js/re.min.js': 'dist/re.js'
       chrome:
         files:
-          'dist/chrome.min.js': 'dist/chrome.js'
+          'js/chrome.min.js': 'dist/chrome.js'
       iconv:
         files:
-          'dist/iconv.min.js': 'dist/iconv.js'
+          'js/iconv.min.js': 'dist/iconv.js'
       utils:
         files:
-          'dist/js-utils.min.js': [
+          'js/js-utils.min.js': [
             'lib/sha1.js'
             'dist/js-utils.js'
           ]
@@ -101,9 +101,15 @@ module.exports = (grunt)->
   grunt.registerTask('test', 'watch run test', ['karma:dev'])
   grunt.registerTask('travis', 'travis test', ['karma:travis'])
   grunt.registerTask(
-    'dist', '生成', [
+    'deploy', '发布', [
       'clean'
       'bump'
+      'coffee'
+      'uglify'
+    ])
+  grunt.registerTask(
+    'dist', '生成', [
+      'clean'
       'coffee'
       'uglify'
     ])

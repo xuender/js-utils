@@ -1,12 +1,21 @@
 {
     "name": "js-utils",
-    "version": "1.0.14",
+    "version": "1.0.16",
     "description": "JavaScript Utils",
     "keywords": [
         "js",
+        "JavaScript",
         "utils"
     ],
-    "main": "utils.min.js",
+    "ignore": [
+        "src",
+        "test",
+        "lib",
+        ".*",
+        "karma.conf.js",
+        "Gruntfile.coffee"
+    ],
+    "main": "js/utils.min.js",
     "license": "MIT",
     "readme": "JavaScript Utils",
     "readmeFilename": "README.md",
