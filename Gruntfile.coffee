@@ -101,16 +101,14 @@ module.exports = (grunt)->
   grunt.registerTask('test', 'watch run test', ['karma:dev'])
   grunt.registerTask('travis', 'travis test', ['karma:travis'])
   grunt.registerTask(
-    'deploy', '发布', [
-      'clean'
-      'bump'
-      'coffee'
-      'uglify'
-    ])
-  grunt.registerTask(
     'dist', '生成', [
       'clean'
       'coffee'
       'uglify'
+    ])
+  grunt.registerTask(
+    'deploy', '发布', [
+      'dist'
+      'bump'
     ])
   grunt.registerTask('default', '默认', ['dist'])
