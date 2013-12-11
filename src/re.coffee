@@ -1,8 +1,7 @@
 ###
 Regex utls
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 
 JU.isUrl = (str)->
   ### 判断字符串是否是URL ###

@@ -1,8 +1,7 @@
 ###
 array utls
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 
 JU.getId = (id = 'ID')->
   ### 获取不重复的顺序ID ###

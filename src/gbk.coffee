@@ -1,8 +1,7 @@
 ###
 UTF8 -> GBK
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 JU._gbk = null
 
 JU._getGbk = ->

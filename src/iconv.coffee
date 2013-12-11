@@ -1,8 +1,7 @@
 ###
 iconv Utils
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 
 JU.str2hex = (str, split='', prefix='')->
   ### string to Hex ###

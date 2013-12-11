@@ -1,8 +1,7 @@
 ###
 HTML5 utils
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 
 JU.lsGet = (key, defaultValue = false)->
   ### 读取本地数据 ###

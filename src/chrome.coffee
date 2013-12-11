@@ -4,8 +4,7 @@ Copyright (C) 2013 ender xu <xuender@gmail.com>
 
 Distributed under terms of the MIT license.
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 JU.syncFetch = (file, fn)->
   ### 获取资源文件 ###
   xhr = new XMLHttpRequest()

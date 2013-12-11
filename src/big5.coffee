@@ -1,8 +1,7 @@
 ###
 UTF8 -> BIG5
 ###
-if not this.JU
-  this.JU = {}
+JU = JU || {}
 JU._big5 = null
 
 JU._getBig5 = ->
