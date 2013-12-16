@@ -73,9 +73,26 @@ describe 'groupBy', ->
     g = JU.groupBy(c, 'g')
     JU.sortOn(g[0].items, 'a')
     JU.sortOn(g[1].items, 'a')
-    expect(g[0].label).toEqual(3)
-    expect(g[1].label).toEqual(4)
-    expect(g[0].items[0].a).toEqual(1)
-    expect(g[0].items[1].a).toEqual(3)
-    expect(g[1].items[0].a).toEqual(2)
-    expect(g[1].items[1].a).toEqual(4)
+    expect(g[0].label).toBe(3)
+    expect(g[1].label).toBe(4)
+    expect(g[0].items[0].a).toBe(1)
+    expect(g[0].items[1].a).toBe(3)
+    expect(g[1].items[0].a).toBe(2)
+    expect(g[1].items[1].a).toBe(4)
+
+describe 'random', ->
+  it '数据完整', ->
+    b = ['a', 'b', 'c', 'd']
+    for i in [1..10]
+      a = ['a', 'b', 'c', 'd']
+      JU.random(a)
+      for c in a
+        expect(c in b).toBe(true)
+  it '乱序', ->
+    count = 0
+    for i in [1..10]
+      a = ['a', 'b', 'c', 'd']
+      JU.random(a)
+      if a[0] != 'a'
+        count += 1
+    expect(count).toBeGreaterThan(5)

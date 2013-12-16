@@ -57,3 +57,9 @@ JU.groupBy = (items, attribute)->
       ret.push(group)
     group.items.push(i)
   ret
+
+JU.random = (items)->
+  ### 随机数组位置 ###
+  items.sort((a, b)->
+    Math.random() - 0.5
+  )
