@@ -20,6 +20,7 @@
         "grunt-coffeelint": "~0.0.8",
         "karma-phantomjs-launcher": "~0.1.2",
         "grunt-karma": "~0.7.2",
+        "karma-jasmine": "~0.2.1",
         "grunt-shell": "~0.6.4"
     },
     "scripts": {
