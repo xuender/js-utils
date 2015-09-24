@@ -15,3 +15,9 @@ describe 'I18n', ->
   i18n = new JU.I18n('zh_CN')
   it 'getMessage', ->
     expect(i18n.getMessage('key')).toEqual('ok')
+describe 'I18n2', ->
+  i18n = new JU.I18n2({'key':'value'})
+  it 'getMessage', ->
+    expect(i18n.getMessage('key')).toEqual('value')
+    expect(i18n.getMessage('key2')).toEqual('key2')
+    expect(i18n.getMessage('key3', 'value3')).toEqual('value3')

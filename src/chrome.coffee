@@ -28,3 +28,10 @@ class JU.I18n
       if msgData.message
         return msgData.message.replace(/\$\$/g, '$')
     args
+# I18N
+class JU.I18n2
+  constructor: (@dict) ->
+  getMessage: (key, def=key)->
+    if key of @dict
+      return @dict[key]
+    def
