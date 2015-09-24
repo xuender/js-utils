@@ -1,27 +1,27 @@
 {
-    "name": "js-utils",
-    "version": "1.0.16",
-    "description": "JavaScript Utils",
-    "keywords": [
-        "js",
-        "JavaScript",
-        "utils"
-    ],
-    "ignore": [
-        "src",
-        "test",
-        "lib",
-        ".*",
-        "karma.conf.js",
-        "Gruntfile.coffee"
-    ],
-    "main": "js/utils.min.js",
-    "license": "MIT",
-    "readme": "JavaScript Utils",
-    "readmeFilename": "README.md",
-    "_id": "js-utils@1.0",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/xuender/js-utils.git"
-    }
+  "name": "js-utils",
+  "version": "1.0.18",
+  "description": "JavaScript Utils",
+  "keywords": [
+    "js",
+    "JavaScript",
+    "utils"
+  ],
+  "ignore": [
+    "src",
+    "test",
+    "lib",
+    ".*",
+    "karma.conf.js",
+    "Gruntfile.coffee"
+  ],
+  "main": "js/utils.min.js",
+  "license": "MIT",
+  "readme": "JavaScript Utils",
+  "readmeFilename": "README.md",
+  "_id": "js-utils@1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xuender/js-utils.git"
+  }
 }
