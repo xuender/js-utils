@@ -1,0 +1,31 @@
+###
+arraySpec.coffee
+Copyright (C) 2015 ender xu <xuender@gmail.com>
+
+Distributed under terms of the MIT license.
+###
+
+describe 'array', ->
+  it 'find', ->
+    as=[
+      {id:1, name:1}
+      {id:2, name:2}
+      {id:3, name:3}
+    ]
+    a = JU.find(as, (i)->
+      i.id == 2
+    )
+    expect(a.name).toEqual(2)
+  it 'remove', ->
+    as=[
+      {id:1, name:1}
+      {id:2, name:2}
+      {id:3, name:3}
+    ]
+    JU.remove(as, (i)->
+      i.id == 2
+    )
+    expect(as.length).toEqual(2)
+    expect(as[0].name).toEqual(1)
+    expect(as[1].name).toEqual(3)
+

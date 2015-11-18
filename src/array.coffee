@@ -1,65 +1,22 @@
 ###
-array utls
+array.coffee
+Copyright (C) 2015 ender xu <xuender@gmail.com>
+
+Distributed under terms of the MIT license.
 ###
-JU = JU || {}
 
-JU.getId = (id = 'ID')->
-  ### 获取不重复的顺序ID ###
-  if window[id] == undefined
-    window[id] = 1
-  window[id]++
-
-JU.findArray = (collection, attribute, value)->
-  ### 数组对象查找 ###
-  if Array.isArray(value)
-    ret = []
-    for o in value
-      ret.push(JU.findArray(collection, attribute, o))
-    return ret
-  for c in collection
-    if c[attribute] == value
-      return c
+JU.find = (array, cb)->
+  for a in array
+    if cb(a)
+      return a
   null
 
-JU.updateArray = (collection, oldObj, newObj)->
-  ### 数组替换 ###
-  collection[index] = newObj for index, value of collection when value == oldObj
-  collection
+JU.remove = (array, cb)->
+  s = []
+  for a, i in array
+    if cb(a)
+      s.push i
+  for i in s.reverse()
+    array.splice(i, 1)
+  array
 
-JU.removeArray = (collection, obj)->
-  ### 删除对象 ###
-  collection.splice(index, 1) for index, value of collection when value == obj
-
-JU.sortOn = (collection, name)->
-  ### 根据数组中对象某属性进行排序 ###
-  if name[0] == '-'
-    desc = true
-    name = name[1..]
-  collection.sort((a, b)->
-    if a[name] <= b[name]
-      return -1
-    1
-  )
-  if desc
-    return collection.reverse()
-
-JU.groupBy = (items, attribute)->
-  ### 获取对象分组 ###
-  ret = []
-  JU.sortOn(items, attribute)
-  groupValue = '_INVALID_GROUP_VALUE_'
-  for i in items
-    if i[ attribute ] != groupValue
-      group =
-        label: i[ attribute ]
-        items: []
-      groupValue = group.label
-      ret.push(group)
-    group.items.push(i)
-  ret
-
-JU.random = (items)->
-  ### 随机数组位置 ###
-  items.sort((a, b)->
-    Math.random() - 0.5
-  )

@@ -1,6 +1,6 @@
 {
   "name": "js-utils",
-  "version": "1.0.18",
+  "version": "2.0.1",
   "description": "JavaScript Utils",
   "keywords": [
     "js",
@@ -13,9 +13,9 @@
     "lib",
     ".*",
     "karma.conf.js",
-    "Gruntfile.coffee"
+    "gulpfile.*"
   ],
-  "main": "js/utils.min.js",
+  "main": "dist/utils.min.js",
   "license": "MIT",
   "readme": "JavaScript Utils",
   "readmeFilename": "README.md",
