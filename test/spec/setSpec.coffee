@@ -53,6 +53,12 @@ describe 'set', ->
     it 'intersection', ->
       s = s1.intersection(s2)
       expect(s.values).toEqual([12])
+    it 'union', ->
+      s = s1.union(s2)
+      expect(s.values).toEqual([30])
+    it 'difference', ->
+      s = s1.difference(s2)
+      expect(s.values).toEqual([2])
 
 describe 'set obj', ->
   getId = (obj)->
@@ -70,6 +76,13 @@ describe 'set obj', ->
     s.add {i:58}
     expect(s.values.length).toEqual(2)
     expect(s.data.length).toEqual(3)
+  it 'add cb', ->
+    s = new JU.Set(getId, [], (obj)->
+      obj['tmp'] = 33
+    )
+    s.add({i:2})
+    expect(s.data[0].i).toEqual(2)
+    expect(s.data[0].tmp).toEqual(33)
   it 'addArr', ->
     s = new JU.Set(getId, [{i:7}, {i:28}, {i:58}])
     expect(s.values.length).toEqual(2)
@@ -81,6 +94,13 @@ describe 'set obj', ->
     expect(s.values.length).toEqual(2)
     expect(s.data.length).toEqual(2)
     expect(s.values[1]).toEqual(0)
+  it 'remove cb', ->
+    obj = {i:7}
+    s = new JU.Set(getId, [obj], (obj)->
+      obj['tmp'] = 7
+    )
+    s.remove(obj)
+    expect(obj.tmp).toEqual(7)
   describe 'func', ->
     s = new JU.Set(getId, [{i:7}, {i:28}, {i:58}])
     it 'in', ->
@@ -111,4 +131,13 @@ describe 'set obj', ->
       s = s1.intersection(s2)
       expect(s.values).toEqual([12])
       expect(s.data.length).toEqual(2)
+    it 'union', ->
+      s = s1.union(s2)
+      expect(s.data.length).toEqual(4)
+    it 'difference', ->
+      s = s1.difference(s2)
+      expect(s.data.length).toEqual(1)
+      s3 = new JU.Set(getId)
+      s = s1.difference(s3)
+      expect(s.data.length).toEqual(3)
 

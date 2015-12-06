@@ -12,7 +12,6 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
       'dist/utils.min.js',
@@ -28,9 +27,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.coffee': ['coffee']
+      'test/**/*.coffee': ['coffee']
     },
 
+    //plugins: [
+    //  'coffee-preprocessor'
+    //],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -57,11 +59,16 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+     browsers: ['Chrome'],
+    //browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultanous
+    concurrency: Infinity
   })
 }

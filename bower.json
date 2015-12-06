@@ -1,6 +1,6 @@
 {
   "name": "js-utils",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "JavaScript Utils",
   "keywords": [
     "js",
@@ -23,5 +23,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/xuender/js-utils.git"
+  },
+  "dependencies": {
+    "js-utils": "../js-utils#~2.0.1"
   }
 }

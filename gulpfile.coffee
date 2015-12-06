@@ -18,18 +18,20 @@ gulp.task('coffee', ->
     'src/array.coffee'
     'src/helper.coffee'
     'src/set.coffee'
+    'src/math.coffee'
+    'src/ic.coffee'
   ])
     .pipe(coffee({bare:true}))
     .pipe(concat('utils.min.js'))
-    #.pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('dist'))
 )
 
 gulp.task('watch', (bc)->
   gulp.watch('src/**/*.coffee', ['coffee'])
-  new KarmaServer(
-    configFile: __dirname + '/karma.conf.js'
-  , bc).start()
+  #new KarmaServer(
+  #  configFile: __dirname + '/karma.conf.js'
+  #, bc).start()
 )
 
 gulp.task('test', (bc)->

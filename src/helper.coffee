@@ -15,6 +15,9 @@ JU.queue = (funcs, scope)->
   def b = (callback)->
     console.info 2
   JU.queue([a, b])
+  > 1
+  > 2
+  > 3
   ###
   (next = ->
     if funcs.length > 0
