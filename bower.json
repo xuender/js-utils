@@ -23,8 +23,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/xuender/js-utils.git"
-  },
-  "dependencies": {
-    "js-utils": "../js-utils#~2.0.1"
   }
 }
