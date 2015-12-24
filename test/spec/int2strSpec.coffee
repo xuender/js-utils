@@ -7,4 +7,4 @@ Distributed under terms of the MIT license.
 
 describe 'int2str', ->
   it 'int2str', ->
-    expect(JU.int2ic(3)).toEqual('x')
+    expect(3).toEqual(JU.ic2int('DEJDB'))

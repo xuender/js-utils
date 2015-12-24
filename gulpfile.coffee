@@ -5,14 +5,11 @@ uglify = require 'gulp-uglify'
 clean = require 'gulp-clean'
 KarmaServer = require('karma').Server
 
-gulp.task('clean', ->
-  gulp.src([
-    'dist'
-  ], {read: false})
-    .pipe(clean())
+gulp.task('clean', (cb)->
+  del 'dist', cb
 )
 
-gulp.task('coffee', ->
+gulp.task('coffee', (cb)->
   gulp.src([
     'src/utils.coffee'
     'src/array.coffee'
@@ -25,13 +22,14 @@ gulp.task('coffee', ->
     .pipe(concat('utils.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist'))
+    .on('finish', cb)
 )
 
 gulp.task('watch', (bc)->
-  gulp.watch('src/**/*.coffee', ['coffee'])
-  #new KarmaServer(
-  #  configFile: __dirname + '/karma.conf.js'
-  #, bc).start()
+  gulp.watch('src/**/*.coffee', gulp.series('coffee'))
+  new KarmaServer(
+    configFile: __dirname + '/karma.conf.js'
+  , bc).start()
 )
 
 gulp.task('test', (bc)->
@@ -40,8 +38,10 @@ gulp.task('test', (bc)->
     singleRun: true
   , bc).start()
 )
-gulp.task('build', [
+gulp.task('build', gulp.series(
   'coffee'
-])
+))
 
-gulp.task('default',['build'])
+gulp.task('default', gulp.series(
+  'build'
+))

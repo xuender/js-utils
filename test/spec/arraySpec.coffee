@@ -16,6 +16,11 @@ describe 'array', ->
       i.id == 2
     )
     expect(a.name).toEqual(2)
+  it 'find err', ->
+    a = JU.find('aaa', (i)->
+      i.id == 2
+    )
+    expect(a).toEqual('aaa')
   it 'remove', ->
     as=[
       {id:1, name:1}
@@ -28,4 +33,8 @@ describe 'array', ->
     expect(as.length).toEqual(2)
     expect(as[0].name).toEqual(1)
     expect(as[1].name).toEqual(3)
-
+  it 'remove err', ->
+    a = JU.remove('aaa', (i)->
+      i.id == 2
+    )
+    expect(a).toEqual('aaa')
