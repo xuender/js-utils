@@ -38,3 +38,19 @@ describe 'array', ->
       i.id == 2
     )
     expect(a).toEqual('aaa')
+  it 'query array', ->
+    as = [
+      {id:1, name:1}
+      {id:2, name:2}
+      {id:3, name:3}
+    ]
+    q = JU.query(as, (i)->
+      i.id < 3
+    )
+    expect(q.length).toEqual(2)
+  it 'query map', ->
+    map = {id:3, name:3, f: 4}
+    q = JU.query(map, (k, v)->
+      v == 3
+    )
+    expect(q.length).toEqual(2)
