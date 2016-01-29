@@ -9,7 +9,7 @@ gulp.task('clean', (cb)->
   del 'dist', cb
 )
 
-gulp.task('coffee', (cb)->
+doCoffee = (cb)->
   gulp.src([
     'src/utils.coffee'
     'src/array.coffee'
@@ -23,10 +23,10 @@ gulp.task('coffee', (cb)->
     .pipe(uglify())
     .pipe(gulp.dest('dist'))
     .on('finish', cb)
-)
+gulp.task('coffee', doCoffee)
 
 gulp.task('watch', (bc)->
-  gulp.watch('src/**/*.coffee', gulp.series('coffee'))
+  gulp.watch('src/**/*.coffee', gulp.parallel('coffee'))
   new KarmaServer(
     configFile: __dirname + '/karma.conf.js'
   , bc).start()

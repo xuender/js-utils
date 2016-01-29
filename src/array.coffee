@@ -37,3 +37,22 @@ JU.query = (array, cb)->
         ret.push k
   ret
 
+JU.concat = (arr1, arr2) ->
+  if arr1 not instanceof Array
+    return arr1
+  if arr2 not instanceof Array
+    return arr2
+  for a in arr2
+    arr1.push a
+  arr1
+
+JU.cover = (arr1, arr2) ->
+  if arr1 not instanceof Array
+    return arr1
+  arr1.splice 0, arr1.length
+  if arr2 not instanceof Array
+    arr1.push arr2
+    return arr1
+  for a in arr2
+    arr1.push a
+  arr1
